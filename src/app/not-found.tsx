@@ -1,12 +1,10 @@
 import Link from "next/link";
-import { NextPage } from "next";
 
-const NotFound: NextPage = () => {
+export default function NotFound() {
   return (
     <div>
-      <div>이 페이지는 존재 안합니다.</div>
+      <p>이 페이지는 존재하지 않습니다.</p>
       <Link href="/search">검색</Link>
     </div>
   );
-};
-export default NotFound;
+}

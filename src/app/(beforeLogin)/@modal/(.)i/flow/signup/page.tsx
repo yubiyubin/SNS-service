@@ -1,5 +1,10 @@
 import SignupModal from "@/app/(beforeLogin)/_component/SignupModal";
 
 export default function Page() {
-  return <SignupModal />;
+  return (
+    <>
+      <SignupModal />
+      인터셉트 가입 라우트
+    </>
+  );
 }
