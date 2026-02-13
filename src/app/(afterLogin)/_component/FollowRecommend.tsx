@@ -15,6 +15,7 @@ export default function FollowRecommend() {
     <div className={style.container}>
       <div className={style.userLogoSection}>
         <div className={style.userLogo}>
+          {/* eslint-disable-next-line @next/next/no-img-element */}
           <img src={user.image} alt={user.id} />
         </div>
       </div>
