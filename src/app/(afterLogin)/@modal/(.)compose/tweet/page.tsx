@@ -4,7 +4,7 @@ import style from "./modal.module.css";
 import { useRef, useState } from "react";
 
 export default function TweetModal() {
-  const [content, setContent] = useState();
+  const [content] = useState();
   const imageRef = useRef<HTMLInputElement>(null);
   const onSubmit = () => {};
   const onClickClose = () => {};
@@ -35,6 +35,7 @@ export default function TweetModal() {
           <div className={style.modalBody}>
             <div className={style.postUserSection}>
               <div className={style.postUserImage}>
+                {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img src={me.image} alt={me.id} />
               </div>
             </div>

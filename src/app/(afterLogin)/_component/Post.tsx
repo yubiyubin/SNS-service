@@ -1,30 +1,46 @@
+/* eslint-disable @next/next/no-img-element */
 import style from "./post.module.css";
+import Link from "next/link";
 import dayjs from "dayjs";
 import relativeTime from "dayjs/plugin/relativeTime";
 import "dayjs/locale/ko";
-import Link from "next/link";
-import ActionButtons from "./ActionButtons";
+import ActionButtons from "@/app/(afterLogin)/_component/ActionButtons";
+import PostArticle from "@/app/(afterLogin)/_component/PostArticle";
+import { faker } from "@faker-js/faker";
+import PostImages from "@/app/(afterLogin)/_component/PostImages";
 
 dayjs.locale("ko");
 dayjs.extend(relativeTime);
-export default function Post() {
+
+type Props = {
+  noImage?: boolean;
+};
+export default function Post({ noImage }: Props) {
   const target = {
+    postId: 1,
     User: {
-      id: "dhkim",
-      nickname: "김동현",
+      id: "elonmusk",
+      nickname: "Elon Musk",
       image: "/yRsRRjGO.jpg",
     },
-    content: "하나하고 쉴거야? 쉬어도 되는데 아무도 안 쉬긴 해~",
+    content: "하나하고 쉴거야? 쉬어도 되는데 아무도 안 쉬긴 해",
     createdAt: new Date(),
-    Images: [],
+    Images: [] as any[],
   };
+  if (Math.random() > 0.5 && !noImage) {
+    target.Images.push(
+      { imageId: 1, link: faker.image.url() },
+      { imageId: 2, link: faker.image.url() },
+      { imageId: 3, link: faker.image.url() },
+      { imageId: 4, link: faker.image.url() },
+    );
+  }
 
   return (
-    <article className={style.post}>
+    <PostArticle post={target}>
       <div className={style.postWrapper}>
         <div className={style.postUserSection}>
           <Link href={`/${target.User.id}`} className={style.postUserImage}>
-            {/* eslint-disable-next-line @next/next/no-img-element */}
             <img src={target.User.image} alt={target.User.nickname} />
             <div className={style.postShade} />
           </Link>
@@ -42,10 +58,12 @@ export default function Post() {
             </span>
           </div>
           <div>{target.content}</div>
-          <div className={style.postImageSection}></div>
+          <div>
+            <PostImages post={target} />
+          </div>
           <ActionButtons />
         </div>
       </div>
-    </article>
+    </PostArticle>
   );
 }
