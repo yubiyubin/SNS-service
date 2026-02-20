@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-img-element */
 import { faker } from "@faker-js/faker";
 import style from "./chatRoom.module.css";
 import Link from "next/link";

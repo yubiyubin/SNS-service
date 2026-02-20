@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import Link from "next/link";
 import style from "@/app/(afterLogin)/_component/post.module.css";
 import cx from "classnames";
