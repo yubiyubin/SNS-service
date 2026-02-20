@@ -83,3 +83,8 @@
 .actionButton:hover {
   background-color: rgb(26, 140, 216);
 }
+@media (prefers-color-scheme: dark) {
+  .postForm {
+    border-color: rgb(47, 51, 54);
+  }
+}
