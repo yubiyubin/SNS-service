@@ -109,7 +109,7 @@
 
 .rightSectionWrapper {
   display: flex;
-  align-items: flex-start;
+  align-items: center;
   flex-grow: 1;
   height: 100dvh;
   flex-direction: column;
