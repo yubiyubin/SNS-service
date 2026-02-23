@@ -9,7 +9,7 @@ const User = [
 
 const baseUrl = process.env.NEXT_PUBLIC_BASE_URL;
 export const handlers = [
-  http.post(`${baseUrl}/api/login`, () => {
+  http.post(`${process.env.NEXT_PUBLIC_BASE_URL}/api/login`, () => {
     console.log("로그인");
     return HttpResponse.json(User[1], {
       headers: {
@@ -17,7 +17,7 @@ export const handlers = [
       },
     });
   }),
-  http.post(`${baseUrl}/api/logout`, () => {
+  http.post("/api/logout", () => {
     console.log("로그아웃");
     return new HttpResponse(null, {
       headers: {
