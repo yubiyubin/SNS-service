@@ -1,10 +1,29 @@
+import NextAuth from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
-import { NextAuthOptions } from "next-auth";
 
-export const authOptions: NextAuthOptions = {
+export const {
+  handlers: { GET, POST },
+  auth,
+  signIn,
+} = NextAuth({
+  trustHost: true,
   pages: {
     signIn: "/i/flow/login",
     newUser: "/i/flow/signup",
+  },
+  callbacks: {
+    jwt({ token, user }) {
+      if (user) {
+        token.id = user.id;
+      }
+      return token;
+    },
+    session({ session, token }) {
+      if (token && session.user) {
+        (session.user as { id?: string }).id = token.sub;
+      }
+      return session;
+    },
   },
   providers: [
     CredentialsProvider({
@@ -34,12 +53,12 @@ export const authOptions: NextAuthOptions = {
         const user = await authResponse.json();
         console.log("user", user);
         return {
-          ...user,
           email: user.id,
           name: user.nickname,
           image: user.image,
+          ...user,
         };
       },
     }),
   ],
-};
+});
