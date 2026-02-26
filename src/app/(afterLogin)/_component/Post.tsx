@@ -1,5 +1,5 @@
 /* eslint-disable react-hooks/purity */
-/* eslint-disable @typescript-eslint/no-explicit-any */
+
 /* eslint-disable @next/next/no-img-element */
 import style from "./post.module.css";
 import Link from "next/link";
@@ -10,25 +10,18 @@ import ActionButtons from "@/app/(afterLogin)/_component/ActionButtons";
 import PostArticle from "@/app/(afterLogin)/_component/PostArticle";
 import { faker } from "@faker-js/faker";
 import PostImages from "@/app/(afterLogin)/_component/PostImages";
+import type { Post } from "@/model/Post";
 
 dayjs.locale("ko");
 dayjs.extend(relativeTime);
 
 type Props = {
   noImage?: boolean;
+  post: Post;
 };
-export default function Post({ noImage }: Props) {
-  const target = {
-    postId: 1,
-    User: {
-      id: "elonmusk",
-      nickname: "Elon Musk",
-      image: "/yRsRRjGO.jpg",
-    },
-    content: "하나하고 쉴거야? 쉬어도 되는데 아무도 안 쉬긴 해",
-    createdAt: new Date(),
-    Images: [] as any[],
-  };
+
+export default function Post({ noImage, post }: Props) {
+  const target = post;
   if (Math.random() > 0.5 && !noImage) {
     target.Images.push(
       { imageId: 1, link: faker.image.url() },
