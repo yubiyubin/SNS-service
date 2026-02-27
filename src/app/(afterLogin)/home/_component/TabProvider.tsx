@@ -1,19 +1,19 @@
-"use client";
-import { createContext, ReactNode, useState } from "react";
+"use client"
+
+import {createContext, ReactNode, useState} from "react";
 
 export const TabContext = createContext({
-  tab: "rec",
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  setTab: (value: string) => {},
+  tab: 'rec',
+  setTab: (value: 'rec' | 'fol') => {},
 });
 
 type Props = { children: ReactNode };
-
 export default function TabProvider({ children }: Props) {
-  const [tab, setTab] = useState("rec");
+  const [tab, setTab] = useState('rec');
+
   return (
     <TabContext.Provider value={{ tab, setTab }}>
       {children}
     </TabContext.Provider>
-  );
+  )
 }

@@ -1,4 +1,13 @@
-export async function getPostRecommends() {
+import { useQuery } from "@tanstack/react-query";
+import {getFollowingPosts} from "./getFollowingPosts";
+
+
+export async function FollowingPosts() {
+const {data}=useQuery({
+  queryKey:['posts','followings'],
+  queryFn: getFollowingPosts,
+})
+
   const res = await fetch(
     `${process.env.NEXT_PUBLIC_BASE_URL}/api/postRecommends`,
     {

@@ -1,5 +1,5 @@
-export type Hashtag = {
-  tagId: number;
-  title: string;
-  count: number;
-};
+export interface Hashtag {
+  tagId: number,
+  title: string,
+  count: number
+}
