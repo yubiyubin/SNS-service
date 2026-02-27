@@ -1,12 +1,10 @@
 import LoginModal from "@/app/(beforeLogin)/_component/LoginModal";
 
-const Page = () => {
+export default function Page() {
   return (
     <>
+      난 가로채기지롱 ㅋㅋ
       <LoginModal />
-      인터셉트 로그인 라우트
     </>
   );
-};
-
-export default Page;
+}
