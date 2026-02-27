@@ -1,16 +1,8 @@
 export async function register() {
-  if (
-    process.env.NODE_ENV === "development" &&
-    process.env.NEXT_RUNTIME === "nodejs"
-  ) {
-    const { server } = await import("./mocks/http");
-    server.listen({
-      onUnhandledRequest(request, print) {
-        if (request.url.includes("_next")) {
-          return;
-        }
-        print.warning();
-      },
-    });
+  console.log('[instrumentation] register called, NEXT_RUNTIME:', process.env.NEXT_RUNTIME);
+  if (process.env.NEXT_RUNTIME === 'nodejs') {
+    const { server } = await import('./mocks/server')
+    server.listen({ onUnhandledRequest: 'bypass' })
+    console.log('[instrumentation] MSW server started');
   }
 }
