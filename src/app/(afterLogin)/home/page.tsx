@@ -1,20 +1,21 @@
 import style from './home.module.css';
-import Tab from "@/app/(afterLogin)/home/_component/Tab";
-import TabProvider from "@/app/(afterLogin)/home/_component/TabProvider";
-import PostForm from "@/app/(afterLogin)/home/_component/PostForm";
-import TabDecider from './_component/TabDecider';
-import RQProvider from "../_component/RQProvider";
+import Tab from '@/app/(afterLogin)/home/_component/Tab';
+import TabProvider from '@/app/(afterLogin)/home/_component/TabProvider';
+import PostForm from '@/app/(afterLogin)/home/_component/PostForm';
+import TabDeciderSuspense from '@/app/(afterLogin)/home/_component/TabDeciderSuspense';
+import { Suspense } from 'react';
+import Loading from '@/app/(afterLogin)/home/loading';
 
-export default function Home() {
+export default async function Home() {
   return (
     <main className={style.main}>
-      <RQProvider>
       <TabProvider>
-        <Tab/>
+        <Tab />
         <PostForm />
-        <TabDecider/>
+        <Suspense fallback={<Loading />}>
+          <TabDeciderSuspense />
+        </Suspense>
       </TabProvider>
-      </RQProvider>
     </main>
-  )
+  );
 }
