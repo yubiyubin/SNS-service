@@ -1,3 +1,7 @@
+.navPill svg {
+    fill: white;
+}
+
 .navPill {
     display: inline-flex;
     height: 50px;
